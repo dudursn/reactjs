@@ -1,0 +1,176 @@
+Ver: npmjs package
+
+Criando um projeto do zero.
+1) Crie um diretório para seu projeto.
+
+2) Abra esse diretório no terminal do seu sistema operacional e rode o comando abaixo:
+
+		npm install create-react-app
+3) Após a instalação, crie o projeto executando a linha:
+
+		npx create-react-app react-alura
+4) Feito isso, entre no diretório criado pela ferramenta e então execute:
+
+		npm start
+
+Aprendidos
+	Criar um Class componente no React
+	Criar sub-componentes internos como Function Component
+	Comunicação entre componentes utilizando props.
+	Trabalhar com formulários
+	Utilizando o evento onChange
+	Submissão de formulário
+	Criar um elemento dinamicamente
+	Instalação do módulo do materialize-css.
+	Importação de um arquivo de estilo.
+	Utilizar o materialize.
+	Estilizar o projeto utilizando className para atribuição de classes.
+	Como utilizar o módulo validator.
+	Estratégia para concentrar a lógica e importação de módulos para validação.
+	Criar uma classe sem necessariamente criar um componente.
+	Lógica para validação de campos.
+	Fazer com que a lógica funcione para qualquer campo.
+	Blindar o código para saber trabalhar caso o método. seja o próprio método ou string.
+	Utilizar o TOAST para emitir mensagens de alto nível.
+	Criar um componente de PopUp para notificar usuários.
+	Instalação do módulo de rotas react-router-dom v4.
+	Trabalhar com rotas no React.
+	High Order Component.
+	DataTable genérico.
+	Acesso a uma *API externa.
+	Utilizar o fetch para requisições no React.
+	Criar uma ApiService.
+	Utilizar uma ApiService.
+	Tratamento de erros.
+	Exibir erros utilizando o PopUp.js.
+	Solução para a página de Autores e Livros.
+
+
+<========= Rotas com react =========>
+
+	> npm install react-router-dom@5.0.0
+
+	import router from 'react-router-dom';
+
+	No index.JS
+		import {BrowserRouter, Switch, Route} from 'react-router-dom';
+		ReactDOM.render(
+			<BrowserRouter>
+				<Switch>
+					<Route path='/' exact={true} component={App}/>
+					<Route path='/sobre' component={Sobre}/>
+					<Route path='/livros' component={Livros}/>
+					<Route path='/autores' component={Autores}/>
+					<Route component={NotFound}/>
+				</Switch>
+			</BrowserRouter>,
+			document.getElementById('root')
+		);
+
+<========= Rotas com react sem recarregamento da página=========>
+
+	import { Link } from 'react-router-dom';
+
+	<Link to="/" className="brand-logo">Casa do Código</Link>
+	<li><Link to='/autores'>Autores</Link></li>
+
+<========= High Order Component (HOC) =========>
+
+	HOCs nada mais é do que um componente que retorna outro, isolando a utilização e reaproveitando a lógica do componente
+	que foi encapsulado
+	import {NavLink} from 'react-router-dom';
+
+	const LinkWrapper = props => {
+		return (
+			<NavLink activeStyle={{fontWeight: "bold"}}{...props}/>
+		);
+	}
+	export default LinkWrapper;
+
+	<LinkWrapper to="/" className="brand-logo">Casa do Código</LinkWrapper>
+
+<========= O que é o Styled Component =========>
+	É um framework de estilização via JavaScript (CSS In JS) que utiliza template string (template literals) e 
+	CSS provendo uma plataforma onde é possível estilizar seus componentes usando CSS. Ou seja, é possível estilizar seus 
+	componentes usando CSS dentro de seu código!
+
+	Instalando o módulo Styled Components
+	Para fazer a instalação, abra o terminal no diretório do seu projeto e execute o comando:
+
+		> npm install styled-components
+		Note: É recomendado que você instale um plugin para styled-components no seu editor de texto.
+
+	Criando seu primeiro componente estilizado
+	1 - Antes de tudo, é necessário importar o módulo no seu arquivo.
+
+		import styled from 'styled-components';
+	2 - Feito isso, crie um componente Button
+
+		const Button = styled.button``;
+	É dentro desses (`) acentos graves que entrará o código CSS
+
+	3 - Estilize seu button da forma que desejar.
+
+		OBS: Podemos criar qualquer componente utilizando styled.TAG
+
+	4 - Continue a estilização do componente.
+
+		const Button = styled.button`
+			background: transparent;
+			border-radius: 3px;
+			border: 2px solid palevioletred;
+			color: palevioletred;
+			margin: 0.5em 1em;
+			padding: 0.25em 1em;
+
+		`;
+	5 - Podemos também adaptar o nosso componente criando funções dentro das template literals, veja:
+
+		const Button = styled.button`
+		background: transparent;
+		border-radius: 3px;
+		border: 2px solid palevioletred;
+		color: palevioletred;
+		margin: 0.5em 1em;
+		padding: 0.25em 1em;
+
+		${props => props.primary && css`
+			background: palevioletred;
+			color: white;
+		`}
+		`;
+		Acima estamos dizendo que queremos mudar a cor de background caso a exista a propriedade primary
+
+		render(
+		<div>
+			<Button>Normal Button</Button>
+			<Button primary>Primary Button</Button>
+		</div>
+		);
+		6 - Podemos criar mais um componente para centralizar os botões, veja o código completo abaixo:
+
+		const Button = styled.button`
+		background: transparent;
+		border-radius: 3px;
+		border: 2px solid palevioletred;
+		color: palevioletred;
+		margin: 0.5em 1em;
+		padding: 0.25em 1em;
+
+		${props => props.primary && css`
+			background: palevioletred;
+			color: white;
+		`}
+		`;
+
+		const Container = styled.div`
+		text-align: center;
+		`
+		//MÉTODO RENDER
+
+		render(
+		<Container>
+			<Button>Normal Button</Button>
+			<Button primary>Primary Button</Button>
+		</Container>
+<========= FIM =========>
